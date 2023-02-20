@@ -11,7 +11,7 @@ export class ProduitsComponent implements OnInit{
 
   //produits : string[] | undefined; //Tableau de chaine de caractère
 
-  produits : Produit[] | undefined; //tableau de produit
+  produits ?: Produit[]; //tableau de produit
 
   constructor (private produitService: ProduitService){
     //this.produits = ["PC Asus", "Imprimante Epson", "Tablette Samsung"];
@@ -27,4 +27,21 @@ export class ProduitsComponent implements OnInit{
    }
 
   ngOnInit():void {}
+
+  supprimerProduit(produit : Produit) {
+    //supprimer le produit prod du tableau produits 
+    // const index = this.produits.indexOf(prod, 0); 
+    // if (index > -1) { 
+    //   this.produits.splice(index, 1); 
+    // } 
+    
+    //ou Bien 
+    this.produits?.forEach((cur, index) => { 
+      if(produit?.idProduit === cur.idProduit) {
+         this.produits?.splice(index, 1); 
+        } 
+      }
+      );
+  }
+
 }
