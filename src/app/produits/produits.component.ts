@@ -29,19 +29,13 @@ export class ProduitsComponent implements OnInit{
   ngOnInit():void {}
 
   supprimerProduit(produit : Produit) {
-    //supprimer le produit prod du tableau produits 
-    // const index = this.produits.indexOf(prod, 0); 
-    // if (index > -1) { 
-    //   this.produits.splice(index, 1); 
-    // } 
+    //console.log(p);
     
-    //ou Bien 
-    this.produits?.forEach((cur, index) => { 
-      if(produit?.idProduit === cur.idProduit) {
-         this.produits?.splice(index, 1); 
-        } 
-      }
-      );
+    let conf = confirm("Etes-vous sûr ?");
+    if (conf) 
+    this.produitService.supprimerProduit(produit);
+
   }
 
 }
+
