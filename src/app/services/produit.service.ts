@@ -40,4 +40,11 @@ export class ProduitService {
           //   }
           //  );
         }
+
+        //Update
+        produit! : Produit;
+        consulterProduit(id:number): Produit{ 
+          this.produit = this.produits.find(p => p.idProduit == id)!;
+           return this.produit;
+        }
 }
