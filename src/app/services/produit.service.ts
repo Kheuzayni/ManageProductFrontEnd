@@ -47,4 +47,11 @@ export class ProduitService {
           this.produit = this.produits.find(p => p.idProduit == id)!;
            return this.produit;
         }
+
+        updateProduit(p:Produit)
+        {
+        // console.log(p);
+        this.supprimerProduit(p);
+        this.ajouterProduit(p);
+        }
 }
