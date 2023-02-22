@@ -21,4 +21,9 @@ import { Produit } from '../model/produit.model';
       
       console.log(this.currentProduit); 
     }
-  }
+
+    updateProduit()
+    { //console.log(this.currentProduit);
+    this.produitService.updateProduit(this.currentProduit);
+    }
+}
