@@ -34,8 +34,12 @@ export class ProduitsComponent implements OnInit{
     let conf = confirm("Etes-vous sûr ?");
     if (conf) 
     this.produitService.supprimerProduit(produit);
-
   }
+
+  updateProduit()
+                { //console.log(this.currentProduit);
+                this.produitService.updateProduit(this.currentProduit);
+                }
 
 }
 
