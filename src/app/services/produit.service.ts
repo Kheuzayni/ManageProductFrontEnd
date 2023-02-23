@@ -50,6 +50,7 @@ export class ProduitService {
 
         //Tri produit après modificacion
         trierProduits(){
+          //let n1 : number| undefined;
           this.produits = this.produits.sort((n1,n2) => {
           if (n1.idProduit > n2.idProduit) {
           return 1;
@@ -66,5 +67,6 @@ export class ProduitService {
         // console.log(p);
         this.supprimerProduit(p);
         this.ajouterProduit(p);
+        this.trierProduits();
         }
 }
