@@ -48,6 +48,19 @@ export class ProduitService {
            return this.produit;
         }
 
+        //Tri produit après modificacion
+        trierProduits(){
+          this.produits = this.produits.sort((n1,n2) => {
+          if (n1.idProduit > n2.idProduit) {
+          return 1;
+          }
+          if (n1.idProduit < n2.idProduit) {
+          return -1;
+          }
+          return 0;
+          });
+          }
+
         updateProduit(p:Produit)
         {
         // console.log(p);
