@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'; 
+import { Categorie } from '../model/categorie.module';
 import { Produit } from '../model/produit.model'; 
 
 @Injectable({ providedIn: 'root' }) 
@@ -7,13 +8,12 @@ export class ProduitService {
 
   produits : Produit[]; //un tableau de Produit constructor() 
   
+  categories : Categorie[];
   constructor(){
-    this.produits = [ 
-    { 
-      idProduit : 1, nomProduit : "PC Asus", prixProduit : 3000.600, dateCreation : new Date("01/14/2011")}, 
-      { idProduit : 2, nomProduit : "Imprimante Epson", prixProduit : 450, dateCreation : new Date("12/17/2010")}, 
-      { idProduit : 3, nomProduit :"Tablette Samsung", prixProduit : 900.123, dateCreation : new Date("02/20/2020")}
-     ];
+    this.categories = [ {idCat : 1, nomCat : "PC"}, {idCat : 2, nomCat : "Imprimante"}];
+    this.produits = [ { idProduit : 1, nomProduit : "PC Asus", prixProduit : 3000.600, dateCreation : new Date("01/14/2011"), scategorie : {idCat : 1, nomCat : "PC"}},
+    { idProduit : 2, nomProduit : "Imprimante Epson", prixProduit : 450, dateCreation : new Date("12/17/2010"), categorie : {idCat : 2, nomCat : "Imprimante"}},
+    { idProduit : 3, nomProduit :"Tablette Samsung", prixProduit : 900.123, dateCreation : new Date("02/20/2020"),categorie : {idCat : 1, nomCat : "PC"}} ];
   }
    
       
