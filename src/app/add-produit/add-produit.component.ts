@@ -16,12 +16,18 @@ export class AddProduitComponent implements OnInit{
   categories! : Categorie[]; 
   newIdCat! : number; 
   newCategorie! : Categorie;
+  router: any;
   
   constructor(private produitService: ProduitService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {this.categories = this.produitService.listeCategories();}
 
   addProduit(){
+    this.newCategorie = this.produitService.consulterCategorie(this.newIdCat); 
+    this.newProduit.categorie = this.newCategorie; 
+    this.produitService.ajouterProduit(this.newProduit); 
+    this.router.navigate(['produits']);
+    
     console.log(this.newProduit); 
     console.table(this.newProduit);
     
@@ -29,7 +35,5 @@ export class AddProduitComponent implements OnInit{
 
     this.message = "Produit "+ this.newProduit.nomProduit +" ajouté avec succes";
   }
-
-  
 
 }
