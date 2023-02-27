@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Categorie } from '../model/categorie.module';
 import { Produit } from '../model/produit.model';
 import { ProduitService } from '../services/produit.service';
 
@@ -12,6 +13,10 @@ export class AddProduitComponent implements OnInit{
   message ?: string;
   newProduit = new Produit();
 
+  categories! : Categorie[]; 
+  newIdCat! : number; 
+  newCategorie! : Categorie;
+  
   constructor(private produitService: ProduitService) { }
 
   ngOnInit(): void {}
