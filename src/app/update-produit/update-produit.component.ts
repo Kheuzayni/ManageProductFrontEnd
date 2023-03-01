@@ -36,7 +36,8 @@ import { Categorie } from '../model/categorie.module';
 
     updateProduit()
     { //console.log(this.currentProduit);
-    this.produitService.updateProduit(this.currentProduit);
-    this.router.navigate(['produits']);
+      this.currentProduit.categorie=this.produitService.consulterCategorie(this.updatedCatId); 
+      this.produitService.updateProduit(this.currentProduit); 
+      this.router.navigate(['produits']);
     }
 }
