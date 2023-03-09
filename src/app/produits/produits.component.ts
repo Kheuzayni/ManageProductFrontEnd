@@ -26,15 +26,35 @@ export class ProduitsComponent implements OnInit{
   
    }
 
-  ngOnInit():void {}
+  // ngOnInit():void {
+  //   this.produitService.listeProduit().subscribe(prods => { 
+  //     console.log(prods); 
+  //     this.produits = prods;
+  // }
 
-  supprimerProduit(produit : Produit) {
-    //console.log(p);
+  // supprimerProduit(produit : Produit) {
+  //   //console.log(p);
     
-    let conf = confirm("Etes-vous sûr ?");
-    if (conf) 
-    this.produitService.supprimerProduit(produit);
+  //   let conf = confirm("Etes-vous sûr ?");
+  //   if (conf) 
+  //   this.produitService.supprimerProduit(produit);
 
+  // }
+
+  ngOnInit(): void { 
+    this.chargerProduits(); 
+  } 
+  
+  chargerProduits(){ 
+    this.produitService.listeProduit()
+    .subscribe(prods => { console.log(prods); this.produits = prods; }); 
+  } 
+  
+  supprimerProduit(p: Produit) { 
+    let conf = confirm("Etes-vous sûr ?");
+     if (conf) this.produitService.supprimerProduit(p.idProduit).subscribe(() => { 
+      console.log("produit supprimé"); 
+      this.chargerProduits(); }); 
   }
 
 }
