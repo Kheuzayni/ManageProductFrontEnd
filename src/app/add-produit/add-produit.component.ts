@@ -22,18 +22,29 @@ export class AddProduitComponent implements OnInit{
 
   ngOnInit(): void {this.categories = this.produitService.listeCategories();}
 
-  addProduit(){
-    this.newCategorie = this.produitService.consulterCategorie(this.newIdCat); 
-    this.newProduit.categorie = this.newCategorie; 
-    this.produitService.ajouterProduit(this.newProduit); 
-    this.router.navigate(['produits']);
+  // addProduit(){
+  //   this.newCategorie = this.produitService.consulterCategorie(this.newIdCat); 
+  //   this.newProduit.categorie = this.newCategorie; 
+  //   this.produitService.ajouterProduit(this.newProduit); 
+  //   this.router.navigate(['produits']);
     
-    console.log(this.newProduit); 
-    console.table(this.newProduit);
+  //   console.log(this.newProduit); 
+  //   console.table(this.newProduit);
     
-    this.produitService.ajouterProduit(this.newProduit);
+  //   this.produitService.ajouterProduit(this.newProduit);
 
-    this.message = "Produit "+ this.newProduit.nomProduit +" ajouté avec succes";
-  }
+  //   this.message = "Produit "+ this.newProduit.nomProduit +" ajouté avec succes";
+  // }
+
+  addProduit(){ 
+    this.produitService.ajouterProduit(this.newProduit) 
+      .subscribe(prod => { 
+        console.log(prod); 
+        this.router.navigate(['produits']); 
+      }
+    ); 
+    }
+
+  
 
 }
