@@ -20,7 +20,12 @@ export class AddProduitComponent implements OnInit{
   
   constructor(private produitService: ProduitService) { }
 
-  ngOnInit(): void {this.categories = this.produitService.listeCategories();}
+  ngOnInit(): void { this.produitService.listeCategories().
+     subscribe(cats => {
+      this.categories = cats; 
+      console.log(cats); }); 
+    }
+  // ngOnInit(): void {this.categories = this.produitService.listeCategories();}
 
   // addProduit(){
   //   this.newCategorie = this.produitService.consulterCategorie(this.newIdCat); 
@@ -36,14 +41,22 @@ export class AddProduitComponent implements OnInit{
   //   this.message = "Produit "+ this.newProduit.nomProduit +" ajouté avec succes";
   // }
 
-  addProduit(){ 
-    this.produitService.ajouterProduit(this.newProduit) 
-      .subscribe(prod => { 
-        console.log(prod); 
-        this.router.navigate(['produits']); 
-      }
-    ); 
-    }
+  // addProduit(){ 
+  //   this.produitService.ajouterProduit(this.newProduit) 
+  //     .subscribe(prod => { 
+  //       console.log(prod); 
+  //       this.router.navigate(['produits']); 
+  //     }
+  //   ); 
+  //   }
+
+  addProduit(){
+     this.newProduit.categorie = this.categories.find(cat => cat.idCat == this.newIdCat)!; 
+     this.produitService.ajouterProduit(this.newProduit) .subscribe(prod => { 
+      console.log(prod); 
+      this.router.navigate(['produits']); 
+    }); 
+  }
 
   
 
