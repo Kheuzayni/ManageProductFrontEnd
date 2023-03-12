@@ -40,7 +40,7 @@ export class ProduitService {
           const url = `${this.apiURL}/${id}`; 
           return this.http.delete(url, httpOptions); 
         }
-        
+
         // supprimerProduit(produit : Produit) {
         //   //supprimer le produit prod du tableau produits 
         //   const index = this.produits.indexOf(produit, 0); 
@@ -59,10 +59,15 @@ export class ProduitService {
 
         //Update
         produit! : Produit;
-        consulterProduit(id:number): Produit{ 
-          this.produit = this.produits.find(p => p.idProduit == id)!;
-           return this.produit;
-        }
+        // consulterProduit(id:number): Produit{ 
+        //   this.produit = this.produits.find(p => p.idProduit == id)!;
+        //    return this.produit;
+        // }
+
+        consulterProduit(id: number): Observable<Produit> {
+           const url = `${this.apiURL}/${id}`; 
+           return this.http.get<Produit>(url); 
+          }
 
         //Tri produit après modificacion
         trierProduits(){
