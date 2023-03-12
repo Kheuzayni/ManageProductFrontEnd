@@ -1,4 +1,4 @@
-import { Categorie } from "./categorie.module";
+import { Categorie } from "./categorie.model";
 
 export class Produit {
     idProduit! : number;

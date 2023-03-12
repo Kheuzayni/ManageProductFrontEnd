@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'; 
-import { Categorie } from '../model/categorie.module';
+import { Categorie } from '../model/categorie.model';
 import { Produit } from '../model/produit.model'; 
 
 import { Observable } from 'rxjs'; 
@@ -99,7 +99,7 @@ export class ProduitService {
         listeCategories():Observable<Categorie[]>{
            return this.http.get<Categorie[]>(this.apiURL+"/cat"); 
           }
-          
+
         consulterCategorie(id:number): Categorie{
            return this.categories.find(cat => cat.idCat == id)!; 
           }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { ProduitService } from '../services/produit.service'; 
 import { Produit } from '../model/produit.model'; 
-import { Categorie } from '../model/categorie.module';
+import { Categorie } from '../model/categorie.model';
 
 @Component({ 
   selector: 'app-update-produit', 
