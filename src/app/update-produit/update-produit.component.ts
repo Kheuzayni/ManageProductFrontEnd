@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { ProduitService } from '../services/produit.service'; 
 import { Produit } from '../model/produit.model'; 
-import { Categorie } from '../model/categorie.module';
+import { Categorie } from '../model/categorie.model';
 
 @Component({ 
   selector: 'app-update-produit', 
@@ -24,15 +24,15 @@ import { Categorie } from '../model/categorie.module';
       private produitService: ProduitService
       ) { } 
     
-      ngOnInit(): void {
-         this.produitService.listeCategories().
-          subscribe(cats => {this.categories = cats; console.log(cats); });
-           this.produitService.consulterProduit(this.activatedRoute.snapshot.params['id']).
-            subscribe( prod =>{
-               this.currentProduit = prod; 
-               this.updatedCatId = this.currentProduit.categorie.idCat; 
-            } ) ; 
-          }
+      // ngOnInit(): void {
+      //    this.produitService.listeCategories().
+      //     subscribe(cats => {this.categories = cats; console.log(cats); });
+      //      this.produitService.consulterProduit(this.activatedRoute.snapshot.params['id']).
+      //       subscribe( prod =>{
+      //          this.currentProduit = prod; 
+      //          this.updatedCatId = this.currentProduit.categorie.idCat; 
+      //       } ) ; 
+      //     }
 
     // updateProduit()
     // { //console.log(this.currentProduit);
@@ -52,4 +52,15 @@ import { Categorie } from '../model/categorie.module';
          this.router.navigate(['produits']); 
       } ); 
     }
+
+    ngOnInit(): void { 
+      this.produitService.listeCategories(). 
+      subscribe(cats => {
+        console.log(cats); this.categories = cats._embedded.categories; 
+      } );
+      this.produitService.consulterProduit(this.activatedRoute.snapshot.params['id']).
+       subscribe( prod =>{
+         this.currentProduit = prod;
+         this.updatedCatId = this.currentProduit.categorie.idCat; 
+        }
 }

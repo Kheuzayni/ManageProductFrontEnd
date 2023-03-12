@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Categorie } from '../model/categorie.module';
+import { Categorie } from '../model/categorie.model';
 import { Produit } from '../model/produit.model';
 import { ProduitService } from '../services/produit.service';
 
@@ -20,11 +20,18 @@ export class AddProduitComponent implements OnInit{
   
   constructor(private produitService: ProduitService) { }
 
-  ngOnInit(): void { this.produitService.listeCategories().
-     subscribe(cats => {
-      this.categories = cats; 
-      console.log(cats); }); 
-    }
+  ngOnInit(): void { 
+    this.produitService.listeCategories(). 
+    subscribe(cats => {console.log(cats); 
+      this.categories = cats._embedded.categories; 
+    } ); 
+  }
+
+  // ngOnInit(): void { this.produitService.listeCategories().
+  //    subscribe(cats => {
+  //     this.categories = cats; 
+  //     console.log(cats); }); 
+  //   }
   // ngOnInit(): void {this.categories = this.produitService.listeCategories();}
 
   // addProduit(){
