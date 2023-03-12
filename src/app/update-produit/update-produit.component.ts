@@ -24,15 +24,15 @@ import { Categorie } from '../model/categorie.model';
       private produitService: ProduitService
       ) { } 
     
-      ngOnInit(): void {
-         this.produitService.listeCategories().
-          subscribe(cats => {this.categories = cats; console.log(cats); });
-           this.produitService.consulterProduit(this.activatedRoute.snapshot.params['id']).
-            subscribe( prod =>{
-               this.currentProduit = prod; 
-               this.updatedCatId = this.currentProduit.categorie.idCat; 
-            } ) ; 
-          }
+      // ngOnInit(): void {
+      //    this.produitService.listeCategories().
+      //     subscribe(cats => {this.categories = cats; console.log(cats); });
+      //      this.produitService.consulterProduit(this.activatedRoute.snapshot.params['id']).
+      //       subscribe( prod =>{
+      //          this.currentProduit = prod; 
+      //          this.updatedCatId = this.currentProduit.categorie.idCat; 
+      //       } ) ; 
+      //     }
 
     // updateProduit()
     // { //console.log(this.currentProduit);
@@ -52,4 +52,15 @@ import { Categorie } from '../model/categorie.model';
          this.router.navigate(['produits']); 
       } ); 
     }
+
+    ngOnInit(): void { 
+      this.produitService.listeCategories(). 
+      subscribe(cats => {
+        console.log(cats); this.categories = cats._embedded.categories; 
+      } );
+      this.produitService.consulterProduit(this.activatedRoute.snapshot.params['id']).
+       subscribe( prod =>{
+         this.currentProduit = prod;
+         this.updatedCatId = this.currentProduit.categorie.idCat; 
+        }
 }
