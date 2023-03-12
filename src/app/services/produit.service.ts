@@ -83,12 +83,16 @@ export class ProduitService {
           });
           }
 
-        updateProduit(p:Produit)
-        {
-        // console.log(p);
-        this.supprimerProduit(p);
-        this.ajouterProduit(p);
-        this.trierProduits();
+        // updateProduit(p:Produit)
+        // {
+        // // console.log(p);
+        // this.supprimerProduit(p);
+        // this.ajouterProduit(p);
+        // this.trierProduits();
+        // }
+
+        updateProduit(prod :Produit) : Observable<Produit> { 
+          return this.http.put<Produit>(this.apiURL, prod, httpOptions); 
         }
 
         listeCategories():Categorie[] {
