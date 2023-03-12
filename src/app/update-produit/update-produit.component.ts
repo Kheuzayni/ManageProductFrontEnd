@@ -28,16 +28,23 @@ import { Categorie } from '../model/categorie.module';
       
       // console.log(this.route.snapshot.params.id); 
      
-      console.log(this.currentProduit); 
-      this.categories = this.produitService.listeCategories(); 
-      this.currentProduit = this.produitService.consulterProduit(this.activatedRoute.snapshot.params['id']); 
-      this.updatedCatId=this.currentProduit.categorie.idCat;
+      // console.log(this.currentProduit); 
+      // this.categories = this.produitService.listeCategories(); 
+      // this.currentProduit = this.produitService.consulterProduit(this.activatedRoute.snapshot.params['id']); 
+      // this.updatedCatId=this.currentProduit.categorie.idCat;
+      this.produitService.consulterProduit(this.activatedRoute.snapshot.params['id']).
+       subscribe( prod =>{ this.currentProduit = prod; } ) ; 
     }
 
-    updateProduit()
-    { //console.log(this.currentProduit);
-      this.currentProduit.categorie=this.produitService.consulterCategorie(this.updatedCatId); 
-      this.produitService.updateProduit(this.currentProduit); 
-      this.router.navigate(['produits']);
-    }
+    // updateProduit()
+    // { //console.log(this.currentProduit);
+    //   this.currentProduit.categorie=this.produitService.consulterCategorie(this.updatedCatId); 
+    //   this.produitService.updateProduit(this.currentProduit); 
+    //   this.router.navigate(['produits']);
+    // }
+
+    updateProduit() {
+       this.produitService.updateProduit(this.currentProduit)
+       .subscribe(prod => { this.router.navigate(['produits']); } ); 
+      }
 }
