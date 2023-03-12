@@ -24,17 +24,15 @@ import { Categorie } from '../model/categorie.module';
       private produitService: ProduitService
       ) { } 
     
-    ngOnInit() { 
-      
-      // console.log(this.route.snapshot.params.id); 
-     
-      // console.log(this.currentProduit); 
-      // this.categories = this.produitService.listeCategories(); 
-      // this.currentProduit = this.produitService.consulterProduit(this.activatedRoute.snapshot.params['id']); 
-      // this.updatedCatId=this.currentProduit.categorie.idCat;
-      this.produitService.consulterProduit(this.activatedRoute.snapshot.params['id']).
-       subscribe( prod =>{ this.currentProduit = prod; } ) ; 
-    }
+      ngOnInit(): void {
+         this.produitService.listeCategories().
+          subscribe(cats => {this.categories = cats; console.log(cats); });
+           this.produitService.consulterProduit(this.activatedRoute.snapshot.params['id']).
+            subscribe( prod =>{
+               this.currentProduit = prod; 
+               this.updatedCatId = this.currentProduit.categorie.idCat; 
+            } ) ; 
+          }
 
     // updateProduit()
     // { //console.log(this.currentProduit);
@@ -43,8 +41,15 @@ import { Categorie } from '../model/categorie.module';
     //   this.router.navigate(['produits']);
     // }
 
-    updateProduit() {
-       this.produitService.updateProduit(this.currentProduit)
-       .subscribe(prod => { this.router.navigate(['produits']); } ); 
-      }
+    // updateProduit() {
+    //    this.produitService.updateProduit(this.currentProduit)
+    //    .subscribe(prod => { this.router.navigate(['produits']); } ); 
+    //   }
+
+    updateProduit() { 
+      this.currentProduit.categorie = this.categories. find(cat => cat.idCat == this.updatedCatId)!; 
+      this.produitService.updateProduit(this.currentProduit).subscribe(prod => {
+         this.router.navigate(['produits']); 
+      } ); 
+    }
 }
