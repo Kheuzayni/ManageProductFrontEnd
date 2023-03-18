@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CategorieWrapper } from '../model/categorieWrapped.model';
 
-
 const httpOptions = {
 headers: new HttpHeaders( {'Content-Type': 'application/json'} )
 };
@@ -77,17 +76,19 @@ export class ProduitService {
 
          
          
-          listeCategories():Observable<CategorieWrapper>{
-              return this.http.get<CategorieWrapper>(this.apiURLCat);
-              }
+       listeCategories():Observable<CategorieWrapper>{
+            return this.http.get<CategorieWrapper>(this.apiURLCat);
+            }     
 
-      /*   consulterCategorie(id:number): Categorie{
-            return this.categories.find(cat => cat.idCat == id)!;
-            } */
+  rechercherParCategorie(idCat: number): Observable<Produit[]> {
+    const url = `${this.apiURL}/prodscat/${idCat}`;
+    return this.http.get<Produit[]>(url);
+  } 
 
-            rechercherParCategorie(idCat: number):Observable< Produit[]> {
-               const url = `${this.apiURL}/prodscat/${idCat}`;
-               return this.http.get<Produit[]>(url); 
-            }
-        
+  rechercherParNom(nom: string):Observable< Produit[]> {
+    const url = `${this.apiURL}/prodsByName/${nom}`;
+    return this.http.get<Produit[]>(url);
+    }
+
+ 
 }
