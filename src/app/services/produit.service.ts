@@ -80,6 +80,9 @@ export class ProduitService {
             return this.http.get<CategorieWrapper>(this.apiURLCat);
             }     
 
+
+
+
   rechercherParCategorie(idCat: number): Observable<Produit[]> {
     const url = `${this.apiURL}/prodscat/${idCat}`;
     return this.http.get<Produit[]>(url);
@@ -90,5 +93,15 @@ export class ProduitService {
     return this.http.get<Produit[]>(url);
     }
 
- 
+
+    ajouterCategorie( cat: Categorie):Observable<Categorie>{
+      return this.http.post<Categorie>(this.apiURLCat, cat, httpOptions);
+     }
+
+     supprimerCategorie(id : number) {
+      const url = `${this.apiURLCat}/${id}`;
+      return this.http.delete(url, httpOptions);
+      } 
+
+
 }
