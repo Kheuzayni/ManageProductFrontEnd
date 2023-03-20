@@ -19,7 +19,7 @@
                 <li class="nav-item dropdown"> 
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Produits </a> 
                     <div class="dropdown-menu"> 
-                        <a class="dropdown" href="/addproduits">Ajouter</a> 
+                        <a  class="dropdown-item"  *ngIf="authService.isAdmin()" routerLink="add-produit">Ajouter</a> 
                         <a class="dropdown-item" href="/produits">Lister</a> 
                     </div> 
                     
@@ -42,8 +42,8 @@
                 </li>  
             </ul>  
                     <li> 
-                        <a class="nav-link" href="/login">login</a> 
-                        <a class="nav-link" href="#">logout</a> 
+                        <a  *ngIf="!authService.isloggedIn"  class="nav-link" routerLink = "login">login</a> 
+                        <a  *ngIf="authService.isloggedIn" class="nav-link" (click) = "onLogout()">logout</a> 
                         <a class="nav-link" href="#">Profile</a> 
                     </li>
              
