@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Se connecter
   onLoggedin()
     {
       this.authService.login(this.user).subscribe({
